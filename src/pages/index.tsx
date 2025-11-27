@@ -16,19 +16,21 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-
-  const alias = ["Norris Wu", "Software Engineer", "Half-Ass Cook", "Sloppy Drawer", "Day-Dreamer", "Cheapskate Tinker",]
+  const alias = [
+    "Norris Wu",
+    "Software Engineer",
+    "Half-Ass Cook",
+    "Sloppy Drawer",
+    "Day-Dreamer",
+    "Cheapskate Tinker",
+  ];
 
   return (
     <div
       className={`${geistSans.className} ${geistMono.className} flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black`}
     >
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start z-10">
-        <ShinyText
-          text="STORY"
-          speed={3}
-          className="text-3xl"
-        />
+        <ShinyText text="STORY" speed={3} className="text-3xl" />
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <RotatingText
             texts={alias}
@@ -42,9 +44,7 @@ export default function Home() {
             rotationInterval={3 * 1000}
           />
 
-          <Button>
-            Let's Hear it
-          </Button>
+          <Button>Let's Hear it</Button>
         </div>
 
         <div>Prototyped By Nori-Cloud</div>
