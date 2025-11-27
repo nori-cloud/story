@@ -6,9 +6,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker-host.sock
       - ../..:/workspaces:cached
-      - workspace_config_4aec90e9162f1dc2:/home/node
+      - workspace_config_b3703aba:/home/node
       - ~/.claude/:/home/node/.claude/
     command: sleep infinity
 
 volumes:
-  workspace_config_4aec90e9162f1dc2:
+  workspace_config_b3703aba:
