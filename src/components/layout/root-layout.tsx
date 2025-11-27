@@ -24,7 +24,7 @@ export function RootLayout({ children }: Props) {
     >
       <main className="flex min-h-dvh max-h-dvh w-full max-w-4xl flex-col p-8 md:py-32 md:px-16 bg-white dark:bg-black sm:items-start z-10 overflow-x-hidden overflow-y-auto">
         <Link href="/">
-          <ShinyText text="STORY" speed={3} className="text-3xl" />
+          <ShinyText text="STORY_v0.4.x" speed={3} className="text-3xl" />
         </Link>
 
         {children}

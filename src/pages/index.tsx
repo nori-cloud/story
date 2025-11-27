@@ -11,6 +11,7 @@ export default function Home() {
     "Sloppy Drawer",
     "Day-Dreamer",
     "Cheapskate Tinker",
+    "Harmless Lunatics"
   ];
 
   return (

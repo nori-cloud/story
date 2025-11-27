@@ -72,6 +72,8 @@ export default function AboutPage() {
   const sections: Section[] = [
     { title: "The Reality", component: <TheReality /> },
     { title: "The Challenges", component: <TheChallenges /> },
+    { title: "The Challenges", component: <TheNoise/> },
+    { title: "The Question", component: <TheQuestion /> },
     { title: "The Idea", component: <TheIdeaPart1 /> },
     { title: "The Idea", component: <TheIdeaPart2 /> },
     { title: "The Idea", component: <TheIdeaPart3 /> },
@@ -123,10 +125,13 @@ function TheReality() {
       <ul className="text-3xl space-y-8 text-center">
         <li>Emerging Technological Revolution</li>
         <li>Global Power Shift</li>
+        <li>Clash of Culture and Experiences</li>
+        <li>"Too Much" and "Too Fast"</li>
       </ul>
     </div>
   );
 }
+
 function TheChallenges() {
   return (
     <div className="flex flex-col gap-12 items-center px-4">
@@ -137,7 +142,7 @@ function TheChallenges() {
       <div className="w-full ring-1"></div>
 
       <p className="flex self-end items-end text-4xl">
-        <FuzzyText fontSize={40}>Disruptive</FuzzyText>Technology
+        <FuzzyText fontSize={40}>Disrupting</FuzzyText>Technology
       </p>
 
       <div className="w-full ring-1"></div>
@@ -149,6 +154,22 @@ function TheChallenges() {
   );
 }
 
+function TheNoise() {
+  return (
+    <div className="flex flex-col gap-12 items-center px-4">
+        <FuzzyText fontSize={40}>Constant</FuzzyText>
+        <FuzzyText fontSize={40}>Noise</FuzzyText> 
+    </div>
+  );
+}
+
+function TheQuestion() {
+    <div className="flex flex-col gap-12 items-center px-4">
+      <p>What the  do I do?</p>
+    </div>
+
+}
+
 function TheIdeaPart1() {
   return (
     <>
@@ -156,8 +177,7 @@ function TheIdeaPart1() {
         <ShinyText text="STORY" speed={3} className="text-6xl text-blue-500" />
       </div>
       <p className="text-3xl mb-4">
-        Leveraging the power of AI to help people gain a better understanding of
-        themselves.
+        Your digital companion that wants to know you and in return, helps you knows yourself.
       </p>
     </>
   );
@@ -195,32 +215,32 @@ function TheIdeaPart3() {
 
 function TheExperience() {
   const useCases = [
-    "By providing your biography, you can explore your past...",
-    "Ask questions about yourself to find your inner voice...",
-    "Discover patterns in your thoughts and behaviors...",
-    "Reflect on your journey with an AI companion...",
+    "Connects with your social platform, whether LinkedIn, Facebook, Instagram...",
+    "Leveraging the power of AI to help people gain a better understanding of themselves",
+    "Safe, Your Story, Your Data, Your Rule.",
   ];
 
   return (
-    <>
-      <div className="text-base text-muted-foreground min-h-12">
+      <div className="text-3xl">
         <TextType
           text={useCases}
           startOnVisible={true}
           loop={true}
-          pauseDuration={2000}
+          pauseDuration={5000}
           deletingSpeed={30}
           typingSpeed={50}
         />
       </div>
-    </>
   );
 }
 
 function TheOutro() {
   return (
-    <h1 className="text-4xl font-bold text-center">
-      So... What's your <Keyword>STORY</Keyword>?
-    </h1>
+    <div >
+      <h1 className="text-4xl font-bold text-center">
+        So... What's your <Keyword>STORY</Keyword>?
+      </h1>
+      <p className="italic text-base text-muted-foreground">psss, there might be technical demo...</p>
+    </div>
   );
 }
