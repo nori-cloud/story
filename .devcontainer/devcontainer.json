@@ -1,0 +1,25 @@
+{
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "formulahendry.auto-close-tag",
+        "sleistner.vscode-fileutils",
+        "eamodio.gitlens",
+        "formulahendry.auto-rename-tag",
+        "oderwat.indent-rainbow",
+        "dsznajder.es7-react-js-snippets",
+        "bradlc.vscode-tailwindcss",
+        "biomejs.biome",
+        "yoavbls.pretty-ts-errors",
+        "usernamehw.errorlens"
+      ]
+    }
+  }
+}
