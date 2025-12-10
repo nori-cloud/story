@@ -4,10 +4,7 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Check if accessing internal routes or profiler API
-  if (
-    pathname.startsWith("/internal") ||
-    pathname.startsWith("/api/profiler")
-  ) {
+  if (pathname.startsWith("/internal")) {
     const host = request.headers.get("host") || "";
 
     // Allow localhost and 127.0.0.1
