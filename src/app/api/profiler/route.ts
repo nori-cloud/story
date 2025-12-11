@@ -15,12 +15,12 @@ const profiler = new Profiler({
 await profiler.initialize();
 
 export async function POST(request: Request) {
-  const { message } = await request.json();
+  const { message, speed } = await request.json();
 
   const response = await profiler.chat(message);
 
   // Generate audio
-  const speechResult = await generateSpeech(response);
+  const speechResult = await generateSpeech(response, { speed });
   const audioBase64 = speechResult.ok
     ? Buffer.from(speechResult.wav).toString("base64")
     : null;

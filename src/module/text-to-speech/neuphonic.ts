@@ -8,12 +8,7 @@ const client = createClient({
   apiKey: Neuphonic.ApiKey,
 });
 
-export const sse = await client.tts.sse({
-  speed: 1,
-  lang_code: "en",
-});
-
-type GenerateSpeechResult =
+export type GenerateSpeechResult =
   | {
       ok: true;
       wav: Uint8Array<ArrayBufferLike>;
@@ -25,8 +20,16 @@ type GenerateSpeechResult =
 
 export async function generateSpeech(
   text: string,
+  options?: {
+    speed?: number;
+  },
 ): Promise<GenerateSpeechResult> {
   try {
+    const sse = await client.tts.sse({
+      speed: options?.speed || 1,
+      lang_code: "en",
+    });
+
     const res = await sse.send(text);
     const wav = toWav(res.audio);
 
