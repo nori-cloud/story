@@ -10,6 +10,7 @@ export default async function Page() {
   async function chat(
     message: string,
     speed: number,
+    tone: string,
   ): Promise<{ text: string; audioBase64: string | null }> {
     "use server";
 
@@ -18,6 +19,7 @@ export default async function Page() {
       apiUrl,
       message,
       speed,
+      tone,
     });
 
     const res = await fetch(apiUrl, {
@@ -25,6 +27,7 @@ export default async function Page() {
       body: JSON.stringify({
         message,
         speed,
+        tone,
       }),
     });
 

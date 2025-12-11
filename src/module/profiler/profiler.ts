@@ -1,11 +1,13 @@
 import { DeepSeekAI } from "./ai/deepseek";
 import { DataLoader } from "./data/loader";
-import { profilerPrompt } from "./prompt";
+import { profilerPrompt, type Tone } from "./prompt";
 
 export class Profiler {
   status: "idle" | "initialized" = "idle";
   private ai: DeepSeekAI;
   private dataLoader: DataLoader;
+  private _systemPrompt: string = "";
+  private context: string = "";
 
   constructor(
     private config: {
@@ -21,6 +23,15 @@ export class Profiler {
     this.dataLoader = new DataLoader();
   }
 
+  get systemPrompt() {
+    return this._systemPrompt;
+  }
+
+  set systemPrompt(value: string) {
+    this._systemPrompt = value;
+    this.ai.setSystemPrompt(value);
+  }
+
   async initialize() {
     const result = await this.dataLoader.fromUrls(this.config.urls);
 
@@ -28,10 +39,14 @@ export class Profiler {
       throw new Error(`Failed to load data: ${result.error}`);
     }
 
-    const systemPrompt = profilerPrompt(result.text);
-    this.ai.setSystemPrompt(systemPrompt);
+    this.context = result.text;
+    this.systemPrompt = profilerPrompt(this.context);
     this.status = "initialized";
     console.log("Profiler initialized.");
+  }
+
+  setTone(tone: Tone) {
+    this.systemPrompt = profilerPrompt(this.context, tone);
   }
 
   async chat(message: string) {

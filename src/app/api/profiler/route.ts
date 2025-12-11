@@ -15,7 +15,11 @@ const profiler = new Profiler({
 await profiler.initialize();
 
 export async function POST(request: Request) {
-  const { message, speed } = await request.json();
+  const { message, speed, tone } = await request.json();
+
+  if (tone) {
+    profiler.setTone(tone);
+  }
 
   const response = await profiler.chat(message);
 

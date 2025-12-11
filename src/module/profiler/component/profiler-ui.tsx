@@ -18,10 +18,13 @@ type Response =
       audioBase64?: string | null;
     };
 
+type Tone = "serious" | "casual" | "funny" | "crazy";
+
 export function ProfilerUI(props: {
   onSubmit: (
     message: string,
     speed: number,
+    tone: Tone,
   ) => Promise<{ text: string; audioBase64?: string | null }>;
 }) {
   const [message, setMessage] = useState("");
@@ -29,6 +32,7 @@ export function ProfilerUI(props: {
     state: "idle",
   });
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [tone, setTone] = useState<Tone>("casual");
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -37,7 +41,7 @@ export function ProfilerUI(props: {
       state: "loading",
     });
 
-    const data = await props.onSubmit(message, playbackSpeed);
+    const data = await props.onSubmit(message, playbackSpeed, tone);
 
     setResponse({
       state: "loaded",
@@ -52,7 +56,7 @@ export function ProfilerUI(props: {
       state: "loading",
     });
 
-    const data = await props.onSubmit(prompt, playbackSpeed);
+    const data = await props.onSubmit(prompt, playbackSpeed, tone);
 
     setResponse({
       state: "loaded",
@@ -112,6 +116,17 @@ export function ProfilerUI(props: {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
+        <select
+          className="px-2 py-2 border rounded-md text-sm bg-background"
+          value={tone}
+          onChange={(e) => setTone(e.target.value as Tone)}
+          title="Tone"
+        >
+          <option value="casual">Casual</option>
+          <option value="serious">Serious</option>
+          <option value="funny">Funny</option>
+          <option value="crazy">Crazy</option>
+        </select>
         <select
           className="px-2 py-2 border rounded-md text-sm bg-background"
           value={playbackSpeed}
