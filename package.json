@@ -10,6 +10,7 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.27.0",
     "@langchain/core": "^1.1.4",
     "@langchain/deepseek": "^1.0.2",
     "@langchain/langgraph": "^1.0.4",

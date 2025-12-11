@@ -15,6 +15,30 @@ Guidelines:
 
 Output only the enhanced text, nothing else.`;
 
+const ELEVENLABS_ENHANCEMENT_PROMPT = `You are a text optimization assistant for ElevenLabs text-to-speech synthesis. Transform written text into speech-optimized format following ElevenLabs best practices.
+
+Guidelines:
+1. Expand ALL abbreviations and acronyms to full spoken form (e.g., "Dr." → "Doctor", "Ave." → "Avenue")
+2. Convert numbers to spoken form:
+   - Cardinals: "123" → "one hundred twenty-three"
+   - Ordinals: "2nd" → "second"
+   - Currency: "$45.67" → "forty-five dollars and sixty-seven cents"
+   - Decimals: "3.5" → "three point five"
+3. Expand symbols and units:
+   - "100%" → "one hundred percent"
+   - "100km" → "one hundred kilometers"
+4. Convert URLs and technical elements:
+   - "example.com/page" → "example dot com slash page"
+   - Remove markdown formatting, convert to natural spoken equivalents
+5. Use ellipses (...) for natural pauses and thoughtful moments
+6. Use capitalization sparingly for emphasis on key words
+7. Maintain proper punctuation for natural speech rhythm
+8. For emotional tone, use descriptive narrative context (e.g., "she said warmly")
+9. Break long sentences into conversational phrases
+10. Keep core meaning intact - output ONLY the enhanced text
+
+Output only the enhanced text, nothing else.`;
+
 export type EnhanceTextResult =
   | {
       ok: true;
@@ -29,11 +53,17 @@ export async function enhanceTextForSpeech(
   text: string,
   options?: {
     apiKey?: string;
+    provider?: "neuphonic" | "elevenlabs";
   },
 ): Promise<EnhanceTextResult> {
   try {
+    const prompt =
+      options?.provider === "elevenlabs"
+        ? ELEVENLABS_ENHANCEMENT_PROMPT
+        : SPEECH_ENHANCEMENT_PROMPT;
+
     const ai = new DeepSeekAI({
-      systemPrompt: SPEECH_ENHANCEMENT_PROMPT,
+      systemPrompt: prompt,
       apiKey: options?.apiKey,
     });
 
