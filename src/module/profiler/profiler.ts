@@ -1,4 +1,4 @@
-import { DeepSeekAI } from "./ai/deepseek";
+import { DeepSeekAI } from "@/lib/ai/deepseek";
 import { DataLoader } from "./data/loader";
 import { profilerPrompt, type Tone } from "./prompt";
 
