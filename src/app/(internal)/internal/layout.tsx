@@ -19,13 +19,23 @@ export default function InternalLayout({
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
-        <div className="container mx-auto px-4 py-3">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link
             href="/internal"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             ← Back to Internal Dashboard
           </Link>
+          <div className="flex gap-2 font-mono text-xs">
+            <span className="px-2 py-1 bg-muted rounded">
+              NODE_ENV: {env}
+            </span>
+            {appEnv && (
+              <span className="px-2 py-1 bg-muted rounded">
+                APP_ENV: {appEnv}
+              </span>
+            )}
+          </div>
         </div>
       </header>
       <main className="container mx-auto px-4 py-6">{children}</main>
