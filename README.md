@@ -89,11 +89,27 @@ The application is configured with Next.js standalone output for optimized Docke
 
 ## Deployment
 
-The project includes a GitHub Action workflow that automatically builds and pushes Docker images to GitHub Container Registry (GHCR) on push to the main branch.
+The project includes a GitHub Action workflow that automatically:
+1. Builds and pushes Docker images to GitHub Container Registry (GHCR)
+2. Updates the deployment manifest in `nori-cloud/lab` repository
 
-Images are tagged with:
-- `latest` - Latest version from main branch
-- `<commit-sha>` - Specific commit hash
+### Workflow Jobs
+
+**build-and-push**: Builds Docker image and pushes to GHCR
+- Tags: `latest` and `<commit-sha>`
+
+**update-deployment**: Updates Kubernetes deployment manifest
+- Checks out `nori-cloud/lab` repository
+- Updates `apps/story/deployment.yaml` with new image tag
+- Commits and pushes changes
+
+### Required Repository Secret
+
+Create a GitHub Personal Access Token (PAT) with `repo` scope and add it as a repository secret:
+
+- **Secret name**: `LAB_REPO_PAT`
+- **Required permissions**: `repo` (to push to nori-cloud/lab)
+- **How to create**: Settings → Developer settings → Personal access tokens → Generate new token
 
 Pull the image:
 ```bash
