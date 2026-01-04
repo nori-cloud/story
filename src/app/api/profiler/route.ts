@@ -1,5 +1,5 @@
 import { Profiler } from "@/module/profiler/profiler";
-import { TextToSpeech } from "@/module/text-to-speech";
+import { TextToSpeech } from "@/module/speech";
 
 const urls = [
   "https://pub-3609c6786e904bc2b95c6093682c92da.r2.dev/australia.md",

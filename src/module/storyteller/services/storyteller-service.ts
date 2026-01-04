@@ -1,4 +1,4 @@
-import { generateSpeech } from "@/module/text-to-speech/neuphonic";
+import { NeurophonicTTSProvider } from "@/module/speech";
 import { narrativePrompt } from "./prompt";
 import { generateFilename } from "@/module/utils/file";
 import { writeFile } from "fs/promises";
@@ -24,12 +24,14 @@ type GenerateStoryResult =
 export class StorytellerService {
   private status: "idle" | "initialized" = "idle";
   private profiler: Profiler;
+  private ttsProvider: NeurophonicTTSProvider;
 
   constructor(urls: string[]) {
     this.status = "idle";
     this.profiler = new Profiler({
       urls,
     });
+    this.ttsProvider = new NeurophonicTTSProvider();
   }
   async init() {
     await this.profiler.initialize();
@@ -57,7 +59,7 @@ export class StorytellerService {
       IMPORTANT that narrative is no longer than ${_opt.length} Characters
       `);
 
-    const speechGenerationResult = await generateSpeech(narrative);
+    const speechGenerationResult = await this.ttsProvider.generate(narrative);
 
     if (!speechGenerationResult.ok) {
       return {
@@ -70,7 +72,7 @@ export class StorytellerService {
 
     await writeFile(
       `${_opt.audioFilePath}/${filename}`,
-      speechGenerationResult.wav,
+      speechGenerationResult.audio,
     );
 
     return {
