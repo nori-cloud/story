@@ -2,7 +2,7 @@ import { createClient, toWav } from "@neuphonic/neuphonic-js";
 import type { TTSProvider, TTSOptions, TTSResult } from "./provider";
 
 const Neuphonic = {
-  ApiKey: process.env.NEUPHONIC_API_KEY || "",
+  ApiKey: process.env.STORY_NEUPHONIC_API_KEY || "",
 };
 
 export class NeurophonicTTSProvider implements TTSProvider {

@@ -1,7 +1,7 @@
 export default function DebugPage() {
   const envInfo = {
     nodeEnv: process.env.NODE_ENV,
-    appEnv: process.env.NEXT_PUBLIC_APP_ENV,
+    appEnv: process.env.NEXT_PUBLIC_STORY_APP_ENV,
   };
 
   return (

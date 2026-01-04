@@ -2,7 +2,7 @@ import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
 import { read } from "fs";
 
 const ElevenLabs = {
-  ApiKey: process.env.ELEVENLABS_API_KEY || "",
+  ApiKey: process.env.STORY_ELEVENLABS_API_KEY || "",
 };
 
 const client = new ElevenLabsClient({

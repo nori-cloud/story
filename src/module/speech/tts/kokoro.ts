@@ -1,6 +1,6 @@
 import type { TTSProvider, TTSOptions, TTSResult } from "./provider";
 
-const KOKORO_BASE_URL = process.env.KOKORO_URL || "http://kokoro:8880";
+const KOKORO_BASE_URL = process.env.STORY_KOKORO_URL || "http://kokoro:8880";
 
 export class KokoroTTSProvider implements TTSProvider {
   private baseUrl: string;

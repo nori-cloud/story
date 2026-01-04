@@ -2,7 +2,7 @@ import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
 import type { TTSProvider, TTSOptions, TTSResult } from "./provider";
 
 const ElevenLabs = {
-  ApiKey: process.env.ELEVENLABS_API_KEY || "",
+  ApiKey: process.env.STORY_ELEVENLABS_API_KEY || "",
 };
 
 export class ElevenLabsTTSProvider implements TTSProvider {

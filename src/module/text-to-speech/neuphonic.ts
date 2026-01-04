@@ -1,7 +1,7 @@
 import { createClient, toWav } from "@neuphonic/neuphonic-js";
 
 const Neuphonic = {
-  ApiKey: process.env.NEUPHONIC_API_KEY || "",
+  ApiKey: process.env.STORY_NEUPHONIC_API_KEY || "",
 };
 
 const client = createClient({

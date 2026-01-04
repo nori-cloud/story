@@ -12,7 +12,7 @@ export class DeepSeekAI {
     apiKey?: string;
   }) {
     this.systemPrompt = config.systemPrompt;
-    this.apiKey = config.apiKey || process.env.DEEPSEEK_API_KEY;
+    this.apiKey = config.apiKey || process.env.STORY_DEEPSEEK_API_KEY;
 
     // Only initialize if API key is available
     if (this.apiKey) {
@@ -27,7 +27,7 @@ export class DeepSeekAI {
   async chat(message: string): Promise<string> {
     if (!this.model) {
       throw new Error(
-        "Deepseek API key not found. Please set the DEEPSEEK_API_KEY environment variable or pass the key into 'apiKey' field.",
+        "Deepseek API key not found. Please set the STORY_DEEPSEEK_API_KEY environment variable or pass the key into 'apiKey' field.",
       );
     }
 

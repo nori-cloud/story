@@ -1,6 +1,6 @@
 import type { STTProvider, STTOptions, STTResult } from "./provider";
 
-const WHISPER_BASE_URL = process.env.WHISPER_URL || "http://whisper:8000";
+const WHISPER_BASE_URL = process.env.STORY_WHISPER_URL || "http://whisper:8000";
 
 export class WhisperSTTProvider implements STTProvider {
   private baseUrl: string;

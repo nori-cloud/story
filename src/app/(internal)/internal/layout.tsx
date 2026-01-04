@@ -7,7 +7,7 @@ export default function InternalLayout({
   children: React.ReactNode;
 }) {
   const env = process.env.NODE_ENV;
-  const appEnv = process.env.NEXT_PUBLIC_APP_ENV;
+  const appEnv = process.env.NEXT_PUBLIC_STORY_APP_ENV;
 
   // Only allow access in development or staging
   const isAllowed = env === "development" || appEnv === "staging";
