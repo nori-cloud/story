@@ -1,5 +1,5 @@
 import { Profiler } from "@/module/profiler/profiler";
-import { TextToSpeech } from "@/module/speech";
+import { Speech } from "@/module/speech";
 
 const urls = [
   "https://pub-3609c6786e904bc2b95c6093682c92da.r2.dev/australia.md",
@@ -14,7 +14,7 @@ const profiler = new Profiler({
 
 await profiler.initialize();
 
-const tts = new TextToSpeech("neuphonic");
+const tts = new Speech("kokoro");
 
 export async function POST(request: Request) {
   const { message, speed, tone } = await request.json();

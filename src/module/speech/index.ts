@@ -19,5 +19,3 @@ export type { EnhanceTextResult } from "./tts/speech-enhancer";
 export type { STTProvider, STTOptions, STTResult } from "./stt/provider";
 export { WhisperSTTProvider } from "./stt/whisper";
 
-// Backward compatibility - re-export as TextToSpeech
-export { Speech as TextToSpeech } from "./speech";
