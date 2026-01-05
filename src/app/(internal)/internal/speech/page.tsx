@@ -1,3 +1,5 @@
+import { STTTester } from "./stt-tester";
+
 export default function SpeechPage() {
   return (
     <div className="max-w-4xl mx-auto">
@@ -13,9 +15,10 @@ export default function SpeechPage() {
 
         <section className="border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Speech-to-Text</h2>
-          <p className="text-muted-foreground text-sm">
-            STT testing tools will go here
+          <p className="text-muted-foreground text-sm mb-4">
+            Test the Whisper STT provider by recording audio or uploading an audio file.
           </p>
+          <STTTester />
         </section>
       </div>
     </div>
