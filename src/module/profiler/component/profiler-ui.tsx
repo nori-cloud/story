@@ -197,48 +197,56 @@ export function ProfilerUI(props: {
       <WaveformVisualizer analyser={analyser} isActive={isRecording} />
 
       {/* Input Bar */}
-      <div className="flex gap-2 items-center">
-        <Input
-          className="flex-1 text-base placeholder:text-base"
-          type="text"
-          name="message"
-          placeholder="write your message here..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          disabled={isInputDisabled}
-        />
-        <select
-          className="px-2 py-2 border rounded-md text-sm bg-background"
-          value={tone}
-          onChange={(e) => setTone(e.target.value as Tone)}
-          title="Tone"
-          disabled={isInputDisabled}
-        >
-          <option value="casual">Casual</option>
-          <option value="serious">Serious</option>
-          <option value="funny">Funny</option>
-          <option value="crazy">Crazy</option>
-        </select>
-        <select
-          className="px-2 py-2 border rounded-md text-sm bg-background"
-          value={playbackSpeed}
-          onChange={(e) => setPlaybackSpeed(Number(e.target.value))}
-          title="Speech speed"
-          disabled={isInputDisabled}
-        >
-          <option value={0.5}>0.5x</option>
-          <option value={0.75}>0.75x</option>
-          <option value={1}>1x</option>
-          <option value={1.25}>1.25x</option>
-          <option value={1.5}>1.5x</option>
-          <option value={2}>2x</option>
-        </select>
-        <PTTButton
-          isRecording={isRecording}
-          disabled={isInputDisabled && !isRecording}
-          onStart={handleStartRecording}
-          onStop={handleStopRecording}
-        />
+      <div className="flex flex-col gap-2">
+        <div className="flex gap-2 items-center">
+          <Input
+            className="flex-1 text-base placeholder:text-base"
+            type="text"
+            name="message"
+            placeholder="write your message here..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            disabled={isInputDisabled}
+          />
+          <PTTButton
+            isRecording={isRecording}
+            disabled={isInputDisabled && !isRecording}
+            onStart={handleStartRecording}
+            onStop={handleStopRecording}
+          />
+        </div>
+        <div className="flex gap-2 items-center">
+          <label className="flex items-center gap-1">
+            Tone:
+            <select
+              className="px-2 py-1 border rounded bg-background"
+              value={tone}
+              onChange={(e) => setTone(e.target.value as Tone)}
+              disabled={isInputDisabled}
+            >
+              <option value="casual">Casual</option>
+              <option value="serious">Serious</option>
+              <option value="funny">Funny</option>
+              <option value="crazy">Crazy</option>
+            </select>
+          </label>
+          <label className="flex items-center gap-1">
+            Speed:
+            <select
+              className="px-2 py-1 border rounded bg-background"
+              value={playbackSpeed}
+              onChange={(e) => setPlaybackSpeed(Number(e.target.value))}
+              disabled={isInputDisabled}
+            >
+              <option value={0.5}>0.5x</option>
+              <option value={0.75}>0.75x</option>
+              <option value={1}>1x</option>
+              <option value={1.25}>1.25x</option>
+              <option value={1.5}>1.5x</option>
+              <option value={2}>2x</option>
+            </select>
+          </label>
+        </div>
       </div>
 
       {/* Audio Playback */}
