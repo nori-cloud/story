@@ -11,13 +11,14 @@ export class KokoroTTSProvider implements TTSProvider {
 
   async generate(text: string, options?: TTSOptions): Promise<TTSResult> {
     try {
-      const response = await fetch(`${this.baseUrl}/generate`, {
+      const response = await fetch(`${this.baseUrl}/v1/audio/speech`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          text,
+          model: "kokoro",
+          input: text,
           voice: options?.voiceId || "af_sky",
           speed: options?.speed || 1.0,
         }),
