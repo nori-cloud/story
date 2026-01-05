@@ -22,7 +22,7 @@ export function RootLayout({ children }: Props) {
     <div
       className={`${geistSans.className} ${geistMono.className} flex min-h-dvh items-center justify-center bg-zinc-50 font-sans dark:bg-black`}
     >
-      <main className="flex min-h-dvh max-h-dvh w-full max-w-4xl flex-col p-8 md:py-32 md:px-16 bg-white dark:bg-black sm:items-start z-10 overflow-x-hidden overflow-y-auto">
+      <main className="flex min-h-dvh max-h-dvh w-full max-w-4xl flex-col p-4 md:py-32 md:px-16 bg-white dark:bg-black sm:items-start z-10 overflow-x-hidden overflow-y-auto">
         <Link href="/">
           <ShinyText text="STORY_v0.4.x" speed={3} className="text-3xl" />
         </Link>
