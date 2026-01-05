@@ -39,6 +39,26 @@ Guidelines:
 
 Output only the enhanced text, nothing else.`;
 
+const KOKORO_ENHANCEMENT_PROMPT = `You are a text optimization assistant for Kokoro TTS (82M parameter lightweight model). Transform text into Kokoro-optimized format using its phoneme notation system.
+
+Guidelines:
+1. Use Kokoro's phoneme notation for challenging words: [text](/phoneme/)
+   - Example: [Kokoro](/kˈOkəɹO/) for pronunciation hints
+   - Use IPA phoneme notation between forward slashes
+2. Keep sentences SHORT (20-25 words maximum) - Kokoro is a lightweight model
+3. Use commas for short pauses, periods for medium pauses, ... for longer pauses
+4. Expand abbreviations to full spoken form (e.g., "Dr." → "Doctor")
+5. Convert numbers to spoken form:
+   - "123" → "one hundred twenty-three"
+   - "$45" → "forty-five dollars"
+6. Remove markdown, URLs, and code blocks - convert to simple spoken equivalents
+7. Break complex sentences into multiple shorter ones
+8. Use simple, conversational language (avoid jargon when possible)
+9. NO SSML tags or complex markup - Kokoro uses plain text with phoneme hints
+10. Keep core meaning intact - output ONLY the enhanced text
+
+Output only the enhanced text, nothing else.`;
+
 export type EnhanceTextResult =
   | {
       ok: true;
@@ -53,14 +73,23 @@ export async function enhanceTextForSpeech(
   text: string,
   options?: {
     apiKey?: string;
-    provider?: "neuphonic" | "elevenlabs";
+    provider?: "neuphonic" | "elevenlabs" | "kokoro";
   },
 ): Promise<EnhanceTextResult> {
   try {
-    const prompt =
-      options?.provider === "elevenlabs"
-        ? ELEVENLABS_ENHANCEMENT_PROMPT
-        : SPEECH_ENHANCEMENT_PROMPT;
+    let prompt: string;
+
+    switch (options?.provider) {
+      case "elevenlabs":
+        prompt = ELEVENLABS_ENHANCEMENT_PROMPT;
+        break;
+      case "kokoro":
+        prompt = KOKORO_ENHANCEMENT_PROMPT;
+        break;
+      default:
+        prompt = SPEECH_ENHANCEMENT_PROMPT;
+        break;
+    }
 
     const ai = new DeepSeekAI({
       systemPrompt: prompt,
