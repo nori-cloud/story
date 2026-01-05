@@ -96,6 +96,13 @@ const TextType = ({
   }, [startOnVisible]);
 
   useEffect(() => {
+    setDisplayedText("");
+    setCurrentCharIndex(0);
+    setIsDeleting(false);
+    setCurrentTextIndex(0);
+  }, [text]);
+
+  useEffect(() => {
     if (showCursor && cursorRef.current) {
       gsap.set(cursorRef.current, { opacity: 1 });
       gsap.to(cursorRef.current, {
