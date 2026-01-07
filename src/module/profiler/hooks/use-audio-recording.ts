@@ -60,9 +60,10 @@ export function useAudioRecording() {
 
         // Stop all tracks
         if (mediaRecorderRef.current?.stream) {
-          mediaRecorderRef.current.stream
-            .getTracks()
-            .forEach((track) => track.stop());
+          mediaRecorderRef.current.stream.getTracks().forEach((track) => {
+            track.stop();
+            return;
+          });
         }
 
         // Close audio context
