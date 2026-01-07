@@ -21,6 +21,18 @@ export default function InternalDashboard() {
                 Speech-to-text and text-to-speech testing
               </p>
             </Link>
+
+            <Link
+              href="/internal/vad"
+              className="block p-6 border rounded-lg hover:border-foreground transition-colors"
+            >
+              <h3 className="text-lg font-semibold mb-2">
+                Voice Activity Detection
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Trigger Audio Chat via detecting voice activity
+              </p>
+            </Link>
           </div>
         </section>
 
