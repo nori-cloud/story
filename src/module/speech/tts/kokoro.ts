@@ -19,8 +19,8 @@ export class KokoroTTSProvider implements TTSProvider {
         body: JSON.stringify({
           model: "kokoro",
           input: text,
-          voice: options?.voiceId || "af_sky",
-          speed: options?.speed || 1.0,
+          voice: options?.voiceId || "am_santa(1)+am_adam(1)",
+          speed: options?.speed || 1.2,
         }),
       });
 
