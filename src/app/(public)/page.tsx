@@ -29,7 +29,9 @@ export default function Home() {
           rotationInterval={3 * 1000}
         />
 
-        <Button>Let's Hear it</Button>
+        <Link href="/profile">
+          <Button>Let's Hear it</Button>
+        </Link>
       </div>
 
       <div className="flex justify-between w-full items ">
