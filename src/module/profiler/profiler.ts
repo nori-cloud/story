@@ -33,19 +33,7 @@ export class Profiler {
   }
 
   async initialize() {
-    // Filter out empty URLs
-    const validUrls = this.config.urls.filter((url) => url && url.trim().length > 0);
-
-    if (validUrls.length === 0) {
-      // No valid URLs, initialize with empty context
-      console.log("Profiler initialized with no URLs (empty context)");
-      this.context = "";
-      this.systemPrompt = profilerPrompt(this.context);
-      this.status = "initialized";
-      return;
-    }
-
-    const result = await this.dataLoader.fromUrls(validUrls);
+    const result = await this.dataLoader.fromUrls(this.config.urls);
 
     if (!result.ok) {
       throw new Error(`Failed to load data: ${result.error}`);
@@ -55,7 +43,7 @@ export class Profiler {
     this.systemPrompt = profilerPrompt(this.context);
     this.status = "initialized";
     console.log(
-      `Profiler initialized, loaded with ${JSON.stringify(validUrls)}`,
+      `Profiler initialized, loaded with ${JSON.stringify(this.config.urls)}`,
     );
   }
 

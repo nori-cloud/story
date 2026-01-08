@@ -3,16 +3,21 @@ import { Speech } from "@/module/speech";
 import { createLogger, generateRequestId } from "@/lib/logger";
 
 const urls = process.env.STORY_PROFILE_URLS || "";
+const urlList = urls.split(", ").filter((url) => url && url.trim().length > 0);
 
 const profiler = new Profiler({
-  urls: urls.split(", "),
+  urls: urlList,
 });
 
 const initLogger = createLogger("Profiler:Init");
-initLogger.info("Initializing profiler", { urls: urls.split(", ") });
 
-await profiler.initialize();
-initLogger.info("Profiler initialized successfully");
+if (urlList.length > 0) {
+  initLogger.info("Initializing profiler", { urls: urlList });
+  await profiler.initialize();
+  initLogger.info("Profiler initialized successfully");
+} else {
+  initLogger.warn("Skipping profiler initialization - no URLs configured");
+}
 
 const tts = new Speech("kokoro");
 initLogger.info("TTS provider initialized", { provider: "kokoro" });
