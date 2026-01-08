@@ -1,15 +1,10 @@
 import { Profiler } from "@/module/profiler/profiler";
 import { Speech } from "@/module/speech";
 
-const urls = [
-  "https://pub-3609c6786e904bc2b95c6093682c92da.r2.dev/australia.md",
-  "https://pub-3609c6786e904bc2b95c6093682c92da.r2.dev/bio.md",
-  "https://pub-3609c6786e904bc2b95c6093682c92da.r2.dev/career.md",
-  "https://pub-3609c6786e904bc2b95c6093682c92da.r2.dev/fun-things.md",
-];
+const urls = process.env.STORY_PROFILE_URLS || "";
 
 const profiler = new Profiler({
-  urls,
+  urls: urls.split(", "),
 });
 
 await profiler.initialize();

@@ -42,7 +42,9 @@ export class Profiler {
     this.context = result.text;
     this.systemPrompt = profilerPrompt(this.context);
     this.status = "initialized";
-    console.log("Profiler initialized.");
+    console.log(
+      `Profiler initialized, loaded with ${JSON.stringify(this.config.urls)}`,
+    );
   }
 
   setTone(tone: Tone) {
